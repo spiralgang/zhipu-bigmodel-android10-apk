@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Info -->
+    <string name="app_name">국제 AI 어시스턴트</string>
+    
+    <!-- UI Labels -->
+    <string name="select_language">언어 선택:</string>
+    <string name="ai_provider">AI 제공자:</string>
+    <string name="auto_translation">자동 번역:</string>
+    <string name="enter_your_prompt">프롬프트 입력:</string>
+    <string name="ai_response">AI 응답:</string>
+    
+    <!-- Placeholders -->
+    <string name="prompt_hint">어떤 언어로든 질문하세요...</string>
+    <string name="response_placeholder">AI 응답이 여기에 표시됩니다...</string>
+    <string name="provider_info_placeholder">제공자 정보가 여기에 표시됩니다</string>
+    
+    <!-- Buttons -->
+    <string name="generate_with_ai">AI로 생성</string>
+    
+    <!-- Status Messages -->
+    <string name="connecting_service">국제 AI 서비스에 연결 중...</string>
+    <string name="powered_by_international_ai">국제 AI 제공자 기반</string>
+    <string name="service_not_connected">서비스가 연결되지 않음</string>
+    <string name="generating_response">응답 생성 중...</string>
+    <string name="response_from">다음에서 응답:</string>
+    <string name="generation_failed">생성 실패</string>
+    <string name="translation_enabled">번역 활성화됨</string>
+    <string name="translation_disabled">번역 비활성화됨</string>
+    
+    <!-- Validation Messages -->
+    <string name="enter_prompt">프롬프트를 입력하세요</string>
+    <string name="error_occurred">오류: %1$s</string>
+</resources>

@@ -42,11 +42,35 @@ Always reference these instructions first and fallback to search or bash command
 **In environments with full network access, these commands would work:**
 ```bash
 # Standard build process (ONLY works with unrestricted internet):
-gradle clean assembleDebug    # Takes 15-30 minutes
-gradle assembleRelease        # Takes 20-45 minutes  
-gradle test                   # Takes 5-10 minutes
-gradle installDebug           # Install to device/emulator
+# 1. Ensure you have the correct directory
+cd /home/runner/work/zhipu-bigmodel-android10-apk/zhipu-bigmodel-android10-apk
+
+# 2. Clean and build debug APK (takes 15-30 minutes, NEVER CANCEL)
+gradle clean assembleDebug
+
+# 3. Build release APK (takes 20-45 minutes, NEVER CANCEL)  
+gradle assembleRelease
+
+# 4. Run unit tests (takes 5-10 minutes, NEVER CANCEL)
+gradle test
+
+# 5. Install debug APK to connected device/emulator
+gradle installDebug
 ```
+
+**Build Timeout Requirements (for unrestricted environments):**
+- `gradle clean`: Set timeout to 300 seconds (5 minutes)
+- `gradle assembleDebug`: Set timeout to 3600 seconds (60 minutes)
+- `gradle assembleRelease`: Set timeout to 3600 seconds (60 minutes) 
+- `gradle test`: Set timeout to 1800 seconds (30 minutes)
+- `gradle installDebug`: Set timeout to 900 seconds (15 minutes)
+
+### API Key Configuration
+Before building, API keys must be configured in the source code:
+- **ZhipuAIProvider.kt**: Add `ZHIPU_API_KEY` constant
+- **BaiduErnieProvider.kt**: Add `BAIDU_API_KEY` constant  
+- **YandexGPTProvider.kt**: Add `YANDEX_API_KEY` constant
+- Register for free API keys at respective provider websites
 
 ### Testing
 **Current Environment**: Tests cannot run due to network dependency restrictions
@@ -83,8 +107,16 @@ Due to network restrictions in this GitHub Copilot environment, the following va
 - Test code structure and coverage
 
 ### In Full Network Environments
+**CRITICAL**: Always run complete end-to-end testing after making changes:
+
 **Complete User Flow Testing** would include:
-1. **App Launch Validation**: Install and launch app (`gradle installDebug`)
+1. **App Launch Validation**:
+   ```bash
+   # Install and launch app
+   gradle installDebug
+   # Manually verify app launches without crashes
+   ```
+
 2. **Core Functionality Testing**:
    - Select different languages from spinner (English, Chinese, Russian, Japanese, Korean)
    - Toggle auto-translation switch ON/OFF
@@ -92,62 +124,24 @@ Due to network restrictions in this GitHub Copilot environment, the following va
    - Enter sample prompt: "Hello, how are you today?"
    - Verify AI response generation works
    - Test with different providers if API keys are configured
+
 3. **International Features Testing**:
    - Test RTL languages (Arabic, Hebrew) if strings are available
    - Verify cultural context optimization
    - Test translation between different language pairs
    - Verify provider health checks work correctly
 
-### Code Quality
-- **Linting**: No lint tools configured that work without Gradle build
-- **Formatting**: No automated formatting tools available without Gradle
-- **Static Analysis**: Limited to basic syntax checking with kotlinc
+### Build Validation Steps (Full Network Environment)
+- Always run `gradle clean` before major builds
+- **NEVER skip ProGuard validation**: Release builds use minification
+- Test both debug and release builds
+- Verify APK outputs at: `app/build/outputs/apk/debug/` and `app/build/outputs/apk/release/`
 
-## Common Tasks
-
-### Adding New AI Providers
-1. Create provider class implementing `AIProvider` interface in `providers/`
-2. Add to provider registry in `InternationalAIService.kt`
-3. Update cultural context optimizers in `PromptLocalizer.kt` if needed
-4. Add provider-specific tests to `InternationalAITest.kt`
-5. Configure API keys and endpoint URLs
-
-### Adding New Languages
-1. Create new `values-xx/` directory (e.g., `values-es` for Spanish)
-2. Copy and translate `strings.xml` file
-3. Add language to `LanguageCode` enum in `Language.kt`
-4. Update translation providers support in `TranslationOrchestratorImpl.kt`
-5. Test RTL layout if applicable
-
-### API Key Configuration
-The application requires API keys for multiple providers:
-```kotlin
-// ZhipuAIProvider.kt - Chinese AI provider
-private const val ZHIPU_API_KEY = "your_zhipu_key"
-
-// BaiduErnieProvider.kt - Chinese cultural optimization
-private const val BAIDU_API_KEY = "your_baidu_key"
-
-// YandexGPTProvider.kt - Russian language optimization
-private const val YANDEX_API_KEY = "your_yandex_key"
-```
-
-### Testing Changes (In Full Network Environment)
-```bash
-# Run unit tests for core functionality
-gradle test
-
-# Run specific test class
-gradle test --tests "com.zhipu.bigmodel.international.InternationalAITest"
-```
-
-**Test Coverage Areas:**
-- Language code mapping and detection
-- Provider initialization and health checks  
-- Cultural context optimization
-- Translation pipeline functionality
-- Quality scoring algorithms
-- Endpoint prioritization logic
+### Code Quality Validation
+- No built-in lint commands found - manual code review required
+- Maintain >80% test coverage as per project guidelines
+- Follow Kotlin coding conventions
+- Test all new provider integrations thoroughly
 
 ## Project Structure Navigation
 
@@ -182,81 +176,41 @@ app/src/main/java/com/zhipu/bigmodel/international/
 - **`app/src/main/res/values-ja/strings.xml`**: Japanese localization  
 - **`app/src/main/res/values-ko/strings.xml`**: Korean localization
 
-### Repository Information from Documentation
+## Common Tasks
 
-From README.md:
+### Adding New AI Providers
+1. Create provider class implementing `AIProvider` interface in `providers/`
+2. Add to provider registry in `InternationalAIService.kt`
+3. Update cultural context optimizers in `PromptLocalizer.kt` if needed
+4. Add provider-specific tests to `InternationalAITest.kt`
+5. Configure API keys and endpoint URLs
+
+### Adding New Languages
+1. Create new `values-xx/` directory (e.g., `values-es` for Spanish)
+2. Copy and translate `strings.xml` file
+3. Add language to `LanguageCode` enum in `Language.kt`
+4. Update translation providers support in `TranslationOrchestratorImpl.kt`
+5. Test RTL layout if applicable
+
+### Testing Changes
+**Current Environment**: Tests cannot run due to network dependency restrictions
+
+**In Full Network Environment:**
 ```bash
-# Original build process (DOES NOT WORK in this environment):
-git clone https://github.com/zhipu-bigmodel/android10-apk.git
-cd android10-apk
-./gradlew assembleRelease  # FAILS - network limitations
+# Run unit tests for core functionality
+gradle test
+
+# Run specific test class
+gradle test --tests "com.zhipu.bigmodel.international.InternationalAITest"
 ```
 
-From INTERNATIONAL_AI_README.md:
-```bash
-# Expected build process (DOES NOT WORK in this environment):
-./gradlew assembleDebug    # FAILS - network limitations  
-./gradlew assembleRelease  # FAILS - network limitations
-./gradlew test            # FAILS - network limitations
-./gradlew installDebug    # FAILS - network limitations
-```
-
-### App Functionality (from source code analysis)
-The app provides:
-1. **Multi-Provider AI Access**: 20+ international AI providers with automatic provider selection
-2. **Real-Time Translation**: 50+ language support with translation caching
-3. **Cultural Context Optimization**: Region-specific prompt engineering and cultural adaptation
-4. **Smart Provider Routing**: Geo-aware load balancing and health monitoring
-5. **Comprehensive UI**: Language selection, provider switching, translation toggle
-
-
-## Critical Limitations in This Environment
-
-**NETWORK CONNECTIVITY**: This GitHub Copilot environment cannot access external repositories (dl.google.com, maven repositories). This means:
-- Gradle builds WILL FAIL when trying to download dependencies
-- Tests cannot run because they depend on Android/JUnit dependencies
-- APK generation is not possible
-- Dependency resolution will timeout
-
-**AVAILABLE ANDROID SDKS**: Only API levels 33-36 are available, but the project originally targeted API 29. The build.gradle has been updated to use API 34.
-
-**WHAT WORKS**: Code examination, file structure analysis, static syntax checking, architecture review.
-
-**WHAT DOESN'T WORK**: Building, testing, running, APK generation, dependency installation.
-
-## Security and Compliance
-
-### API Key Security
-- API keys stored locally on device only
-- No user data collection or external storage
-- Regional compliance: GDPR, Chinese data sovereignty
-- HTTPS-only API communications
-
-### Permissions Required
-- `INTERNET`: Network access for API calls
-- `ACCESS_NETWORK_STATE`: Check network connectivity
-- `FOREGROUND_SERVICE`: Background AI processing
-- `WAKE_LOCK`: Maintain processing during generation
-
-## Known Limitations
-
-### Build Environment Constraints
-- **CRITICAL**: Requires internet connectivity for all builds (except this environment)
-- Cannot build in offline mode due to missing dependency cache
-- Android SDK/NDK must be available in build environment
-- Network timeouts may occur in restricted environments
-
-### Runtime Limitations  
-- Free API quotas: Zhipu AI provides 1,000,000 tokens/month
-- Some providers may have geographical restrictions
-- Translation quality varies by provider and language pair
-- UI testing limited to manual verification (no automated UI tests)
-
-### Development Workflow
-- No automated lint checking configured
-- Manual code review required for quality assurance
-- Limited automated testing infrastructure
-- Provider health checks depend on external service availability
+**Test Coverage Areas:**
+- Language code mapping and detection
+- Provider initialization and health checks  
+- Cultural context optimization
+- Translation pipeline functionality
+- Quality scoring algorithms
+- Endpoint prioritization logic
 
 ## Build Times and Performance
 
@@ -281,7 +235,7 @@ The app provides:
 - **Status**: Expected behavior in this environment - no workaround available
 - **Solution**: In unrestricted environments, ensure stable internet connection
 
-### Common Build Failures (General)
+### Common Build Failures
 - **Missing repositories in buildscript**: Fixed in current codebase
 - **Gradle version mismatch**: Use Gradle 7.4.2 as specified in wrapper
 - **ProGuard issues**: Check `proguard-rules.pro` for required keep rules
@@ -301,6 +255,40 @@ When making changes to this codebase:
 4. Review resource files for UI changes
 5. Check manifest for permission requirements
 6. Always update API keys in provider implementations when deploying
+
+## Security and Compliance
+
+### API Key Security
+- API keys stored locally on device only
+- No user data collection or external storage
+- Regional compliance: GDPR, Chinese data sovereignty
+- HTTPS-only API communications
+
+### Permissions Required
+- `INTERNET`: Network access for API calls
+- `ACCESS_NETWORK_STATE`: Check network connectivity
+- `FOREGROUND_SERVICE`: Background AI processing
+- `WAKE_LOCK`: Maintain processing during generation
+
+## Known Limitations
+
+### Build Environment Constraints
+- **CRITICAL**: Requires internet connectivity for all builds (except this restricted environment)
+- Cannot build in offline mode due to missing dependency cache
+- Android SDK/NDK must be available in build environment
+- Network timeouts may occur in restricted environments
+
+### Runtime Limitations  
+- Free API quotas: Zhipu AI provides 1,000,000 tokens/month
+- Some providers may have geographical restrictions
+- Translation quality varies by provider and language pair
+- UI testing limited to manual verification (no automated UI tests)
+
+### Development Workflow
+- No automated lint checking configured
+- Manual code review required for quality assurance
+- Limited automated testing infrastructure
+- Provider health checks depend on external service availability
 
 ## References
 
@@ -336,3 +324,17 @@ The app provides:
 3. **Cultural Context Optimization**: Region-specific prompt engineering and cultural adaptation
 4. **Smart Provider Routing**: Geo-aware load balancing and health monitoring
 5. **Comprehensive UI**: Language selection, provider switching, translation toggle
+
+## Critical Limitations in This Environment
+
+**NETWORK CONNECTIVITY**: This GitHub Copilot environment cannot access external repositories (dl.google.com, maven repositories). This means:
+- Gradle builds WILL FAIL when trying to download dependencies
+- Tests cannot run because they depend on Android/JUnit dependencies
+- APK generation is not possible
+- Dependency resolution will timeout
+
+**AVAILABLE ANDROID SDKS**: Only API levels 33-36 are available, but the project originally targeted API 29. The build.gradle has been updated to use API 34.
+
+**WHAT WORKS**: Code examination, file structure analysis, static syntax checking, architecture review.
+
+**WHAT DOESN'T WORK**: Building, testing, running, APK generation, dependency installation.

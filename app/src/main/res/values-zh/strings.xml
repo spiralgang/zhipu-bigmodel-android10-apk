@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Info -->
+    <string name="app_name">国际AI助手</string>
+    
+    <!-- UI Labels -->
+    <string name="select_language">选择语言：</string>
+    <string name="ai_provider">AI提供商：</string>
+    <string name="auto_translation">自动翻译：</string>
+    <string name="enter_your_prompt">输入提示词：</string>
+    <string name="ai_response">AI回应：</string>
+    
+    <!-- Placeholders -->
+    <string name="prompt_hint">用任何语言提问...</string>
+    <string name="response_placeholder">AI回应将在此显示...</string>
+    <string name="provider_info_placeholder">提供商信息将在此显示</string>
+    
+    <!-- Buttons -->
+    <string name="generate_with_ai">生成AI回应</string>
+    
+    <!-- Status Messages -->
+    <string name="connecting_service">正在连接国际AI服务...</string>
+    <string name="powered_by_international_ai">基于国际AI提供商</string>
+    <string name="service_not_connected">服务未连接</string>
+    <string name="generating_response">正在生成回应...</string>
+    <string name="response_from">来自回应：</string>
+    <string name="generation_failed">生成失败</string>
+    <string name="translation_enabled">翻译已启用</string>
+    <string name="translation_disabled">翻译已禁用</string>
+    
+    <!-- Validation Messages -->
+    <string name="enter_prompt">请输入提示词</string>
+    <string name="error_occurred">错误：%1$s</string>
+    
+    <!-- Provider Descriptions -->
+    <string name="zhipu_description">中文AI，推理能力强</string>
+    <string name="baidu_description">文心一言，中文文化背景优化</string>
+    <string name="alibaba_description">通义千问，多模态支持</string>
+    <string name="yandex_description">俄语优化GPT</string>
+    <string name="naver_description">韩语HyperCLOVA X</string>
+    <string name="rinna_description">日语对话AI</string>
+    <string name="ai21_description">希伯来语和多语言Jurassic</string>
+    <string name="cohere_description">研究导向的多语言AI</string>
+</resources>

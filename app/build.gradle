@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdk 29  // Android 10
+    compileSdk 34  // Updated to use available SDK
 
     defaultConfig {
         applicationId "com.zhipu.bigmodel.international"
         minSdk 26    // Minimum support Android 8.0
-        targetSdk 29
+        targetSdk 34  // Updated to match compileSdk
         versionCode 1
         versionName "1.0"
 

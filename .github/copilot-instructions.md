@@ -1,0 +1,201 @@
+# Zhipu BigModel Android 10 APK
+
+Always reference these instructions first and fallback to search or bash commands only when you encounter unexpected information that does not match the info here.
+
+## Current Repository State
+
+**CRITICAL**: This repository currently contains documentation and code specifications but NO actual Android project structure. The documented build commands will NOT work until the Android project is properly created.
+
+- **README.md**: User-facing documentation with build instructions
+- **BigModel**: Technical specification file with complete code examples and architecture
+- **LICENSE**: MIT license file
+
+## Working Effectively
+
+### First Steps When Working on This Repository
+1. **ALWAYS check current limitations first** - Read the validation section before attempting builds
+2. **Do NOT attempt `./gradlew` commands** - They will fail as no Gradle wrapper exists
+3. **Reference the BigModel specification file** for all implementation details
+4. **Work in documentation/design phase** until Android project structure is created
+
+### Prerequisites
+The repository requires a complete Android development environment to build:
+
+- Java 17+ (available: OpenJDK 17.0.16)
+- Gradle 9.0.0+ (available: Gradle 9.0.0)
+- Android SDK with API level 29 (Android 10) - **CURRENTLY MISSING**
+- Android Build Tools
+- Network access to download Android dependencies
+
+### Environment Setup
+```bash
+# Export Android environment variables
+export ANDROID_HOME=/usr/local/lib/android/sdk
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools
+
+# Test ADB (this works)
+adb version  # Returns: Android Debug Bridge version 1.0.41
+
+# Install required Android API level (currently fails due to network restrictions)
+sdkmanager "platforms;android-29" "build-tools;29.0.3"  # FAILS: Cannot connect to dl.google.com
+```
+
+### Build Commands (NOT CURRENTLY FUNCTIONAL)
+The README.md documents these build steps, but they require an actual Android project structure:
+
+```bash
+# These commands WILL FAIL in current repository state:
+./gradlew clean                    # ERROR: No gradlew script exists
+./gradlew assembleRelease          # ERROR: No build.gradle files exist
+```
+
+**NEVER CANCEL**: Android builds typically take 10-25 minutes for initial dependency downloads, then 5-15 minutes for subsequent builds. Always set timeout to 45+ minutes for first builds, 30+ minutes for incremental builds.
+
+**NETWORK DEPENDENCY ISSUE**: Gradle builds currently fail with "dl.google.com" connection errors due to network restrictions in this environment.
+
+## Project Architecture
+
+Based on the BigModel specification file, when properly implemented, this will be:
+
+- **Target**: Android 10 (API 29), minimum Android 8.0 (API 26)
+- **Language**: Kotlin
+- **Architecture**: Service-based with Retrofit for API calls
+- **Dependencies**: AndroidX, Retrofit, OkHttp, Coroutines, Material Components
+
+### Key Components (from specification)
+- `BigModelService.kt`: Core service handling Zhipu AI API calls
+- `MainActivity.kt`: Main UI activity
+- `BigModelApi.kt`: Retrofit API interface
+- Various XML layouts and resources
+
+## Validation
+
+### Current Limitations
+- **BUILD FAILS**: No actual Android project structure exists
+- **NETWORK RESTRICTED**: Cannot download Android dependencies (dl.google.com blocked)
+- **MISSING PLATFORMS**: Android SDK API 29 not installed, only API 33-34 available
+- **MISSING API KEYS**: Requires Zhipu AI API key from https://open.bigmodel.cn/
+- **NO EMULATOR**: Cannot test actual Android functionality
+
+### Validated Environment Status
+**Working tools:**
+- Java: OpenJDK 17.0.16 ✓
+- Gradle: 9.0.0 ✓ 
+- Android SDK: Partially installed ✓
+- ADB: Available at `/usr/local/lib/android/sdk/platform-tools/adb` ✓
+
+**Not working:**
+- Network access to Google/Android repositories ✗
+- Android API 29 (required target) ✗
+- Gradle wrapper generation ✗
+
+### Manual Testing Scenarios (when project exists)
+When the Android project structure is created:
+
+1. **API Integration Test**:
+   - Configure valid API key in `BigModelService.kt`
+   - Build and install APK: `./gradlew installDebug` 
+   - Launch app and test text generation with simple prompt
+   - Verify response appears within 3-5 seconds
+
+2. **UI Validation**:
+   - Verify "Powered by Zhipu AI" branding is visible
+   - Test input field accepts multi-line text
+   - Confirm generate button enables/disables properly
+
+3. **Service Validation**:
+   - Check foreground service starts correctly
+   - Verify network permissions work
+   - Test error handling with invalid API key
+
+### Development Workflow
+When working on this project once structure exists:
+
+```bash
+# Development build (NEVER CANCEL: takes 10-15 minutes)
+./gradlew assembleDebug --timeout=30m
+
+# Release build (NEVER CANCEL: takes 15-25 minutes) 
+./gradlew assembleRelease --timeout=45m
+
+# Install to connected device
+adb install app/build/outputs/apk/debug/app-debug.apk
+
+# View logs
+adb logcat | grep -i bigmodel
+```
+
+## Common Tasks
+
+### BigModel Specification File Summary
+The 611-line `BigModel` file contains comprehensive implementation details:
+- Complete Gradle build configuration
+- Android manifest with required permissions  
+- Kotlin source code for all main components (MainActivity, BigModelService, API interface)
+- XML layout definitions and styling resources
+- Dependency management and build instructions
+- API usage examples and integration patterns
+- UI branding guidelines ("Powered by Zhipu AI")
+
+**Key insight**: This file serves as the complete implementation blueprint - use it as the authoritative source for all Android development questions.
+
+### Repository Structure (current state)
+```
+.
+├── README.md              # User documentation
+├── BigModel              # Technical specification (17KB)
+├── LICENSE               # MIT license
+└── .github/
+    └── copilot-instructions.md  # This file
+```
+
+### Expected Android Structure (not yet created)
+Based on BigModel specification, the project should have:
+```
+app/
+├── build.gradle
+├── src/main/
+│   ├── AndroidManifest.xml
+│   ├── java/com/zhipu/bigmodel/
+│   │   ├── MainActivity.kt
+│   │   ├── BigModelService.kt
+│   │   └── BigModelApi.kt
+│   └── res/
+│       ├── layout/activity_main.xml
+│       ├── values/colors.xml
+│       └── drawable/
+build.gradle              # Project-level
+settings.gradle
+gradlew                   # Gradle wrapper script
+gradlew.bat
+```
+
+## Implementation Notes
+
+### API Configuration
+- Replace `YOUR_FREE_API_KEY` in `BigModelService.kt` with valid key from Zhipu AI
+- Free tier provides 1,000,000 tokens/month
+- API endpoint: `https://open.bigmodel.cn/api/paas/v4/chat/completions`
+
+### Security Considerations
+- API key stored locally on device only
+- Minimal permissions: INTERNET, NETWORK_STATE, FOREGROUND_SERVICE, WAKE_LOCK
+- No user data collection or storage
+
+### Troubleshooting
+- **Gradle sync fails**: Ensure Android SDK API 29 is installed
+- **API calls fail**: Verify internet connection and valid API key
+- **Build errors**: Check Java 17+ and Gradle 9.0.0+ versions
+- **Network restrictions**: May prevent downloading Android dependencies in CI environments
+
+## Next Steps
+
+To make this repository functional:
+
+1. Create actual Android project structure using Android Studio or command-line tools
+2. Implement the code from BigModel specification file
+3. Add proper gradlew scripts and build.gradle files
+4. Configure CI/CD pipeline for automated builds
+5. Add proper .gitignore for Android projects
+
+**Note**: Current repository is in documentation/specification phase and requires substantial implementation work before build commands become functional.

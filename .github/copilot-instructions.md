@@ -1,354 +1,227 @@
-# Zhipu BigModel Android 10 APK - Developer Instructions
+# International AI Assistant Android App
 
-Always reference these instructions first and fallback to search or additional investigation only when you encounter information that does not match or is incomplete compared to what is documented here.
-
-## Repository Structure and Purpose
-
-This repository is a **documentation and specification repository** for a Zhipu BigModel Android 10 APK project. **CRITICAL**: This repository does NOT contain actual Android source code, build files, or a working Android project structure.
-
-### What This Repository Contains:
-- `README.md`: High-level project description and quick start guide
-- `BigModel`: Detailed technical specifications with complete code examples and architecture
-- `LICENSE`: MIT license file
-- `.github/`: GitHub configuration and this instruction file
-
-### What This Repository Does NOT Contains:
-- No Android project structure (`app/`, `src/`, `build.gradle` files)
-- No gradlew scripts or build system
-- No actual Kotlin/Java source code files
-- No XML layout files  
-- No CI/CD workflows or build automation
+Always reference these instructions first and fallback to search or bash commands only when you encounter unexpected information that does not match the info here.
 
 ## Working Effectively
 
-### Understanding the Documentation
-- **Always read `README.md` first** for project overview and quick start concepts
-- **Reference the `BigModel` file** for complete technical specifications and code examples
-- The `BigModel` file contains detailed Android project code including:
-  - Complete `build.gradle` configuration
-  - Full Kotlin source code for MainActivity, BigModelService, API interfaces
-  - XML layout files and resource definitions
-  - Manifest configuration
-  - Build and deployment instructions
+### Repository Bootstrap and Build Process
+- **CRITICAL**: This project requires stable internet connectivity for all build operations.
+- **NEVER CANCEL** any build commands - Android builds can take 15-45 minutes depending on system performance. Set timeout to 60+ minutes.
+- **Always check network connectivity first**: `ping google.com` before attempting builds.
 
-## Environment Setup Requirements
-
-**EXACT INSTALLATION STEPS for Android Development:**
-
-### Required SDKs and Tools
+**Essential Build Steps:**
 ```bash
-# Java Development Kit (required for Android development)
-# Install OpenJDK 17 (recommended for current Android projects)
-sudo apt-get update
-sudo apt-get install openjdk-17-jdk
+# 1. Ensure you have the correct directory
+cd /home/runner/work/zhipu-bigmodel-android10-apk/zhipu-bigmodel-android10-apk
 
-# Set JAVA_HOME
-export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
-echo 'export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64' >> ~/.bashrc
+# 2. Clean and build debug APK (takes 15-30 minutes, NEVER CANCEL)
+gradle clean assembleDebug
 
-# Android Studio installation (Linux)
-wget https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2023.3.1.18/android-studio-2023.3.1.18-linux.tar.gz
-tar -xzf android-studio-2023.3.1.18-linux.tar.gz
-sudo mv android-studio /opt/
-sudo ln -sf /opt/android-studio/bin/studio.sh /usr/local/bin/android-studio
+# 3. Build release APK (takes 20-45 minutes, NEVER CANCEL)  
+gradle assembleRelease
 
-# Set Android environment variables
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+# 4. Run unit tests (takes 5-10 minutes, NEVER CANCEL)
+gradle test
 
-# Add to bashrc for persistence
-echo 'export ANDROID_HOME=$HOME/Android/Sdk' >> ~/.bashrc
-echo 'export PATH=$PATH:$ANDROID_HOME/emulator' >> ~/.bashrc  
-echo 'export PATH=$PATH:$ANDROID_HOME/platform-tools' >> ~/.bashrc
-echo 'export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin' >> ~/.bashrc
+# 5. Install debug APK to connected device/emulator
+gradle installDebug
 ```
 
-### Required Android SDK Components
-Install these exact components via Android Studio SDK Manager or command line:
-- **Android SDK Platform 29** (Android 10.0) - Required for target SDK
-- **Android SDK Platform 26** (Android 8.0) - Required for minimum SDK  
-- **Android SDK Build Tools 33.0.0** or latest
-- **Android Emulator** (for testing)
-- **Android SDK Platform-Tools** (includes ADB)
-- **Android SDK Command-line Tools**
+**Build Timeout Requirements:**
+- `gradle clean`: Set timeout to 300 seconds (5 minutes)
+- `gradle assembleDebug`: Set timeout to 3600 seconds (60 minutes)
+- `gradle assembleRelease`: Set timeout to 3600 seconds (60 minutes) 
+- `gradle test`: Set timeout to 1800 seconds (30 minutes)
+- `gradle installDebug`: Set timeout to 900 seconds (15 minutes)
 
-### Verification Commands
-```bash
-# Verify Java installation
-java -version  # Should show OpenJDK 17
+### Development Environment Setup
+- **Target Platform**: Android 10 (API 29), minimum Android 8.0 (API 26)
+- **Language**: Kotlin with Java 8 compatibility
+- **Build System**: Gradle 7.4.2 with Android Gradle Plugin 7.1.3
+- **IDE Support**: Configured for Android Studio with view binding enabled
 
-# Verify Android SDK
-adb version    # Should show Android Debug Bridge version
+### API Key Configuration
+Before building, API keys must be configured in the source code:
+- **ZhipuAIProvider.kt**: Add `ZHIPU_API_KEY` constant
+- **BaiduErnieProvider.kt**: Add `BAIDU_API_KEY` constant  
+- **YandexGPTProvider.kt**: Add `YANDEX_API_KEY` constant
+- Register for free API keys at respective provider websites
 
-# List installed SDK platforms
-sdkmanager --list | grep "Android API"
+## Validation Scenarios
 
-# Verify required components are installed
-sdkmanager --list | grep "build-tools;33"
-sdkmanager --list | grep "platforms;android-29"
-sdkmanager --list | grep "platforms;android-26"
-```
+**CRITICAL**: Always run complete end-to-end testing after making changes:
 
-### Creating the Android Project from Specifications
-
-**CRITICAL**: You cannot build or run anything in this repository directly. To create an actual working Android project:
-
-2. **Create new Android project**:
+### Complete User Flow Testing
+1. **App Launch Validation**:
    ```bash
-   # Launch Android Studio
-   android-studio
-   
-   # Or create from command line:
-   mkdir BigModelAndroid
-   cd BigModelAndroid
-   
-   # In Android Studio: File > New > New Project
-   # Use these EXACT settings:
-   # - Template: Empty Activity
-   # - Name: BigModel
-   # - Package: com.zhipu.bigmodel  
-   # - Language: Kotlin
-   # - Minimum SDK: API 26 (Android 8.0)
-   # - Build configuration language: Gradle (Kotlin DSL)
+   # Install and launch app
+   gradle installDebug
+   # Manually verify app launches without crashes
    ```
 
-3. **Implement the specifications**:
-   - Copy code examples from the `BigModel` file
-   - Replace `YOUR_FREE_API_KEY` in BigModelService.kt with actual Zhipu AI API key
-   - Follow the exact package structure and dependencies listed
-   - Use provided XML layouts and resource files
+2. **Core Functionality Testing**:
+   - Select different languages from spinner (English, Chinese, Russian, Japanese, Korean)
+   - Toggle auto-translation switch ON/OFF
+   - Test AI provider selection and switching
+   - Enter sample prompt: "Hello, how are you today?"
+   - Verify AI response generation works
+   - Test with different providers if API keys are configured
 
-4. **API Key Setup**:
-   - Register at https://open.bigmodel.cn/
-   - Create free API key (1,000,000 tokens/month quota)
-   - Never commit API keys to version control
+3. **International Features Testing**:
+   - Test RTL languages (Arabic, Hebrew) if strings are available
+   - Verify cultural context optimization
+   - Test translation between different language pairs
+   - Verify provider health checks work correctly
 
-### Build Process (For Created Project)
+### Build Validation Steps
+- Always run `gradle clean` before major builds
+- **NEVER skip ProGuard validation**: Release builds use minification
+- Test both debug and release builds
+- Verify APK outputs at: `app/build/outputs/apk/debug/` and `app/build/outputs/apk/release/`
 
-Once you create the actual Android project from specifications:
+### Code Quality Validation
+- No built-in lint commands found - manual code review required
+- Maintain >80% test coverage as per project guidelines
+- Follow Kotlin coding conventions
+- Test all new provider integrations thoroughly
 
-```bash
-# Clean build - typically takes 30-60 seconds
-./gradlew clean
+## Project Structure Navigation
 
-# Build debug APK for development - NEVER CANCEL: Takes 3-8 minutes on first build
-./gradlew assembleDebug
-# Set timeout to 15+ minutes for this command
-
-# Build release APK - NEVER CANCEL: Takes 5-15 minutes depending on machine, includes ProGuard
-./gradlew assembleRelease  
-# Set timeout to 30+ minutes for this command
-
-# Run lint checks - takes 2-5 minutes
-./gradlew lint
-# Set timeout to 10+ minutes for this command
-
-# Find generated APK at:
-# Debug: app/build/outputs/apk/debug/app-debug.apk
-# Release: app/build/outputs/apk/release/app-release.apk
-
-# Install on connected device (requires USB debugging enabled)
-adb devices  # Verify device is connected
-adb install app/build/outputs/apk/debug/app-debug.apk
+### Key Directories
+```
+app/src/main/java/com/zhipu/bigmodel/international/
+├── MainActivity.kt                    # Main UI controller
+├── core/                             # Core system components
+│   ├── Language.kt                   # Language definitions and enums
+│   ├── PromptLocalizer.kt           # Cultural prompt optimization  
+│   └── Provider.kt                   # AI provider interfaces
+├── providers/                        # AI provider implementations
+│   ├── ChineseProviders.kt          # Zhipu AI, Baidu Ernie providers
+│   └── InternationalProviders.kt    # Yandex, international providers
+├── service/                         # Background services
+│   └── InternationalAIService.kt    # Main orchestration service
+└── translation/                     # Translation system
+    ├── TranslationInterface.kt      # Translation contracts
+    └── TranslationOrchestratorImpl.kt # Translation implementation
 ```
 
-### Testing Commands (For Created Project)
+### Configuration Files
+- **`build.gradle` (app)**: Dependencies, build configuration, ProGuard rules
+- **`build.gradle` (root)**: Project-wide Gradle configuration  
+- **`AndroidManifest.xml`**: Permissions, activities, services
+- **`proguard-rules.pro`**: Code obfuscation rules for release builds
 
+### Internationalization Resources
+- **`app/src/main/res/values/strings.xml`**: Default English strings
+- **`app/src/main/res/values-zh/strings.xml`**: Chinese localization
+- **`app/src/main/res/values-ru/strings.xml`**: Russian localization
+- **`app/src/main/res/values-ja/strings.xml`**: Japanese localization  
+- **`app/src/main/res/values-ko/strings.xml`**: Korean localization
+
+## Common Tasks and Commands
+
+### Adding New AI Providers
+1. Create provider class implementing `AIProvider` interface in `providers/`
+2. Add to provider registry in `InternationalAIService.kt`
+3. Update cultural context optimizers in `PromptLocalizer.kt` if needed
+4. Add provider-specific tests to `InternationalAITest.kt`
+5. Configure API keys and endpoint URLs
+
+### Adding New Languages
+1. Create new `values-xx/` directory (e.g., `values-es` for Spanish)
+2. Copy and translate `strings.xml` file
+3. Add language to `LanguageCode` enum in `Language.kt`
+4. Update translation providers support in `TranslationOrchestratorImpl.kt`
+5. Test RTL layout if applicable
+
+### Testing Changes
 ```bash
-# Run unit tests - NEVER CANCEL: Takes 2-10 minutes depending on test suite
-./gradlew test
-# Set timeout to 20+ minutes for this command
+# Run unit tests for core functionality
+gradle test
 
-# Run connected Android tests (requires physical device or emulator) 
-# NEVER CANCEL: Takes 5-20 minutes depending on device and test complexity
-./gradlew connectedAndroidTest
-# Set timeout to 45+ minutes for this command
-
-# Generate test coverage report - takes 3-8 minutes  
-./gradlew jacocoTestReport
-# Set timeout to 15+ minutes for this command
+# Run specific test class
+gradle test --tests "com.zhipu.bigmodel.international.InternationalAITest"
 ```
 
-### Testing and Validation
+**Test Coverage Areas:**
+- Language code mapping and detection
+- Provider initialization and health checks  
+- Cultural context optimization
+- Translation pipeline functionality
+- Quality scoring algorithms
+- Endpoint prioritization logic
 
-**CRITICAL MANUAL VALIDATION SCENARIOS** (after creating actual project):
+## Build Times and Performance
 
-**Always run through these complete end-to-end scenarios after making any changes:**
+**Expected Build Times** (varies by system):
+- Clean build: 2-5 minutes
+- Debug APK build: 15-30 minutes  
+- Release APK build: 20-45 minutes (includes ProGuard)
+- Unit tests: 5-10 minutes
+- Install to device: 2-5 minutes
 
-1. **Environment and Setup Test**:
-   - Ensure API key is properly configured in BigModelService.kt
-   - Launch app and verify no crashes on startup
-   - Verify app requests necessary permissions on first launch
-   - Check that foreground service notification appears
+**Performance Notes:**
+- Release builds use R8 minification and resource shrinking
+- ProGuard rules optimize for AI provider classes
+- App supports Android 8.0+ for wider device compatibility
+- Designed for mobile-first responsive UI
 
-2. **Service Connection Test**:
-   - Wait for "BigModel service connected" status to appear (should take 2-3 seconds)
-   - Verify UI elements are properly enabled after service connection
-   - Test app behavior if service binding fails
+## Troubleshooting
 
-3. **Core API Functionality Test**:
-   - Enter test prompt: "Hello, tell me about Android development in 100 words"
-   - Tap "Generate with BigModel" button
-   - Verify loading state shows: "Generating response..."
-   - Confirm response appears within 10 seconds (typical: 3-5 seconds)
-   - Check response quality and completeness
-   - Verify "Powered by Zhipu AI" branding is visible throughout UI
+### Network Build Issues
+- **Problem**: `No address associated with hostname` during build
+- **Solution**: Ensure stable internet connection, check firewall settings
+- **Workaround**: Cannot use `--offline` mode due to missing cached dependencies
 
-4. **Extended Functionality Test**:
-   - Test with longer prompts (500+ characters)
-   - Test with multiple consecutive requests
-   - Verify app handles API rate limits gracefully
-   - Test prompt with special characters and emojis
+### Common Build Failures
+- **Missing repositories in buildscript**: Fixed in current codebase
+- **Gradle version mismatch**: Use Gradle 7.4.2 as specified in wrapper
+- **ProGuard issues**: Check `proguard-rules.pro` for required keep rules
 
-5. **Error Handling and Edge Cases**:
-   - Test with invalid/expired API key (should show clear error message)
-   - Test with no network connection (should handle gracefully with timeout)
-   - Test with very long prompts (over token limit)
-   - Test app behavior when API quota is exhausted
-   - Test foreground service behavior during screen rotation
+### Runtime Issues
+- **Service not connecting**: Check `InternationalAIService` is properly bound in `MainActivity`
+- **API failures**: Verify API keys are configured correctly
+- **Translation errors**: Check network connectivity and provider availability
+- **UI language not updating**: Restart app after language change
 
-6. **UI and UX Validation**:
-   - Verify responsive layout on different screen sizes
-   - Test app in portrait and landscape orientations
-   - Confirm all text is readable and UI elements are accessible
-   - Verify smooth scrolling in response text area
-   - Check branding elements are properly positioned
+## Security and Compliance
 
-**ALWAYS** validate these scenarios manually - automated tests cannot fully verify API integration and user experience.
+### API Key Security
+- API keys stored locally on device only
+- No user data collection or external storage
+- Regional compliance: GDPR, Chinese data sovereignty
+- HTTPS-only API communications
 
-### Dependencies and Requirements
+### Permissions Required
+- `INTERNET`: Network access for API calls
+- `ACCESS_NETWORK_STATE`: Check network connectivity
+- `FOREGROUND_SERVICE`: Background AI processing
+- `WAKE_LOCK`: Maintain processing during generation
 
-Based on the specifications, the actual project would require:
-- **Target SDK**: 29 (Android 10)
-- **Minimum SDK**: 26 (Android 8.0)
-- **Language**: Kotlin
-- **Key Dependencies**:
-  - androidx.core:core-ktx:1.6.0
-  - androidx.appcompat:appcompat:1.3.1
-  - com.google.android.material:material:1.4.0
-  - com.squareup.retrofit2:retrofit:2.9.0
-  - com.squareup.retrofit2:converter-gson:2.9.0
-  - com.squareup.okhttp3:logging-interceptor:4.9.3
-  - org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4
+## Known Limitations
 
-## Common Tasks
+### Build Environment Constraints
+- **CRITICAL**: Requires internet connectivity for all builds
+- Cannot build in offline mode due to missing dependency cache
+- Android SDK/NDK must be available in build environment
+- Network timeouts may occur in restricted environments
 
-### Updating Documentation
-When modifying documentation in this repository:
-- Update `README.md` for user-facing changes
-- Update `BigModel` file for technical specification changes
-- Ensure code examples in `BigModel` remain valid and complete
-- Test any URLs or references to external resources
+### Runtime Limitations  
+- Free API quotas: Zhipu AI provides 1,000,000 tokens/month
+- Some providers may have geographical restrictions
+- Translation quality varies by provider and language pair
+- UI testing limited to manual verification (no automated UI tests)
 
-### Code Examples Reference
-The `BigModel` file contains complete, copy-pasteable code for:
-- **BigModelService.kt**: Foreground service for API calls
-- **MainActivity.kt**: Main UI and service binding  
-- **BigModelApi.kt**: Retrofit API interface definitions
-- **activity_main.xml**: Main UI layout
-- **AndroidManifest.xml**: Permissions and service configuration
-- **build.gradle**: Complete project configuration
-- **Resource files**: Colors, drawables, strings
+### Development Workflow
+- No automated lint checking configured
+- Manual code review required for quality assurance
+- Limited automated testing infrastructure
+- Provider health checks depend on external service availability
 
-### API Integration Notes
-- **Base URL**: https://open.bigmodel.cn/
-- **Model**: glm-4 (GLM-4 model)
-- **Authentication**: Bearer token with API key
-- **Free Quota**: 1,000,000 tokens/month per account
-- **Average Response Time**: 2-5 seconds
-- **Required Permissions**: INTERNET, NETWORK_STATE, FOREGROUND_SERVICE, WAKE_LOCK
+## References
 
-### Repository Navigation
-- `/README.md`: Start here for project overview
-- `/BigModel`: Complete technical reference and code examples  
-- `/LICENSE`: MIT license terms
-- `/.github/copilot-instructions.md`: This instruction file
-
-## Validation Steps
-
-Before suggesting changes to this documentation repository:
-1. **Verify External URLs**: Check that all links to Zhipu AI and Android documentation are valid
-2. **Code Syntax Check**: Ensure code examples in `BigModel` file use valid Kotlin/Android syntax
-3. **API Compatibility**: Verify API endpoints and request formats match current Zhipu AI documentation
-4. **Android Compatibility**: Confirm Android API levels and dependencies are current and compatible
-
-## Key Limitations
-
-**DO NOT**:
-- Try to run `./gradlew` commands in this repository (they will fail - no gradle project exists)
-- Attempt to build or compile code (no source code exists here)
-- Look for CI/CD workflows (none exist - this is documentation only)
-- Search for APK files or build outputs (none exist)
-- Try to install or run the app from this repository (documentation only)
-
-### Commands That WILL FAIL in This Repository
-```bash
-# These commands will fail with "gradlew not found" or similar errors:
-./gradlew build              # FAILS - no gradlew script exists
-./gradlew assembleRelease    # FAILS - no Android project structure
-./gradlew test              # FAILS - no test infrastructure
-gradle build                # FAILS - no build.gradle files
-adb install app-debug.apk   # FAILS - no APK files exist
-```
-
-**ALWAYS**:
-- Direct users to create a new Android project using the provided specifications
-- Reference the detailed code examples in the `BigModel` file
-- Emphasize the need to obtain and configure a real Zhipu AI API key
-- Remind users this is a template/specification repository, not working code
-
-## Security Considerations
-
-- Never commit API keys to any repository
-- Use environment variables or secure storage for API keys in actual implementations
-- Follow Android security best practices for network requests
-- Implement proper error handling for API failures
-- Validate all user inputs before sending to API
-
-## Brand Requirements
-
-Per the specifications, any implementation must:
-- Display "Powered by Zhipu AI" prominently in the UI
-- Include Zhipu AI attribution in splash screen
-- Maintain branding consistency across all UI elements
-- Provide attribution to Zhipu AI in public deployments (per MIT license)
-
-## Troubleshooting Common Issues
-
-### Documentation Repository Issues
-**Problem**: "Cannot find gradlew or build files"
-**Solution**: This is expected - create a new Android project following the Environment Setup Requirements
-
-**Problem**: "API examples don't work" 
-**Solution**: Copy code examples from `BigModel` file into a properly created Android project structure
-
-**Problem**: "Links to APK downloads are broken"
-**Solution**: This repository provides specifications only - APK must be built from created Android project
-
-### Android Development Issues (When Creating Actual Project)
-**Problem**: "Build fails with 'compileSdk 29' error"
-**Solution**: Install Android SDK Platform 29 via Android Studio SDK Manager
-
-**Problem**: "API calls return 401 Unauthorized"
-**Solution**: Verify API key is valid and properly formatted in BigModelService.kt (Bearer token format)
-
-**Problem**: "App crashes on startup"
-**Solution**: Check that all required permissions are declared in AndroidManifest.xml
-
-**Problem**: "Foreground service notification doesn't appear"  
-**Solution**: Ensure target SDK compatibility and proper notification channel setup for Android 10+
-
-**Problem**: "Network requests timeout"
-**Solution**: Check internet connectivity and verify Zhipu AI API endpoint accessibility
-
-### API Integration Issues
-**Problem**: "Quota exceeded errors"
-**Solution**: Free tier provides 1M tokens/month - monitor usage or upgrade plan
-
-**Problem**: "Slow response times (>10 seconds)"
-**Solution**: Check network latency and consider implementing retry logic
-
-**Problem**: "Chinese characters in API responses"
-**Solution**: This is expected for Zhipu AI - ensure proper UTF-8 encoding in app
+- **Zhipu BigModel API**: [https://open.bigmodel.cn/dev/api](https://open.bigmodel.cn/dev/api)
+- **Android Developer Guide**: Standard Android development practices apply
+- **Kotlin Coroutines**: Used extensively for async operations
+- **Retrofit/OkHttp**: Network layer implementation
+- **Project Documentation**: See `README.md` and `INTERNATIONAL_AI_README.md`

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Info -->
+    <string name="app_name">Международный ИИ Помощник</string>
+    
+    <!-- UI Labels -->
+    <string name="select_language">Выберите язык:</string>
+    <string name="ai_provider">Провайдер ИИ:</string>
+    <string name="auto_translation">Автоперевод:</string>
+    <string name="enter_your_prompt">Введите запрос:</string>
+    <string name="ai_response">Ответ ИИ:</string>
+    
+    <!-- Placeholders -->
+    <string name="prompt_hint">Спросите что-нибудь на любом языке...</string>
+    <string name="response_placeholder">Ответ ИИ появится здесь...</string>
+    <string name="provider_info_placeholder">Информация о провайдере появится здесь</string>
+    
+    <!-- Buttons -->
+    <string name="generate_with_ai">Генерировать с ИИ</string>
+    
+    <!-- Status Messages -->
+    <string name="connecting_service">Подключение к международному сервису ИИ...</string>
+    <string name="powered_by_international_ai">На базе международных провайдеров ИИ</string>
+    <string name="service_not_connected">Сервис не подключен</string>
+    <string name="generating_response">Генерация ответа...</string>
+    <string name="response_from">Ответ от:</string>
+    <string name="generation_failed">Генерация не удалась</string>
+    <string name="translation_enabled">Перевод включен</string>
+    <string name="translation_disabled">Перевод отключен</string>
+    
+    <!-- Validation Messages -->
+    <string name="enter_prompt">Пожалуйста, введите запрос</string>
+    <string name="error_occurred">Ошибка: %1$s</string>
+</resources>

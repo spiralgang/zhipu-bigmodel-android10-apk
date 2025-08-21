@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 General Questions
+    url: https://github.com/spiralgang/zhipu-bigmodel-android10-apk/discussions
+    about: Ask questions and discuss ideas with the community
+  - name: 🔍 Search Existing Issues First
+    url: https://github.com/spiralgang/zhipu-bigmodel-android10-apk/issues?q=is%3Aissue
+    about: Please search both open and closed issues before creating a new one

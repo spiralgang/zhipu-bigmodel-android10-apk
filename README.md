@@ -135,9 +135,31 @@ Open-source under MIT. Attribution to Zhipu AI required for all public-facing de
 
 ---
 
+## Repository Management
+
+### 🛡️ Issue Deduplication & Prevention
+
+This repository has implemented comprehensive measures to prevent duplicate issues and maintain clean project organization:
+
+- **Issue Templates**: Mandatory duplicate search before creating new issues
+- **Branch Management**: Automated cleanup and lifecycle guidelines  
+- **Complete Documentation**: All work successfully consolidated from multiple parallel efforts
+
+📋 **Deduplication Summary**: See [Issue Deduplication Summary](.github/ISSUE_DEDUPLICATION_SUMMARY.md) for details on resolved duplicates and prevention measures.
+
+### 🔧 Contributing Guidelines
+
+- Search existing issues before creating new ones
+- Use appropriate issue templates (Bug Report, Feature Request, Documentation)
+- Follow branch naming conventions in [Branch Management Guidelines](.github/BRANCH_MANAGEMENT.md)
+- Delete feature branches after successful merge
+
+---
+
 ## References
 
-- All foundational standards and best practices: `/reference/vault`
-- Zhipu BigModel API: [https://open.bigmodel.cn/dev/api](https://open.bigmodel.cn/dev/api)
-- Android app security: `/reference/vault#android-app-security`
-- APK build/signing: `/reference/vault#android-apk-build-sign`
+- **International AI System**: [INTERNATIONAL_AI_README.md](INTERNATIONAL_AI_README.md)
+- **Implementation Details**: [IMPLEMENTATION_SUMMARY.md](IMPLEMENTATION_SUMMARY.md)
+- **Developer Instructions**: [.github/copilot-instructions.md](.github/copilot-instructions.md)
+- **Zhipu BigModel API**: [https://open.bigmodel.cn/dev/api](https://open.bigmodel.cn/dev/api)
+- **All foundational standards**: `/reference/vault`

@@ -1,10 +1,12 @@
-# Zhipu BigModel Android 10 APK
+# Free BigModel (Zhipu AI) Android 10 APK Project
 
-Always reference these instructions first and fallback to search or bash commands only when you encounter unexpected information that does not match the info here.
+**ALWAYS follow these instructions first and only fallback to additional search and context gathering if the information here is incomplete or found to be in error.**
 
-## Current Repository State
+## Repository Current State
 
 **UPDATED**: This repository now contains a complete, fully implemented Android project structure based on the BigModel specification. All Android project files have been created and the build system is properly configured.
+
+This repository contains a lightweight Android 10 application that integrates with Zhipu BigModel API (GLM-4) for free text generation. The project is designed for rapid deployment with minimal setup.
 
 - **README.md**: User-facing documentation with build instructions
 - **BigModel**: Technical specification file with complete code examples and architecture  

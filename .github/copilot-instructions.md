@@ -342,6 +342,11 @@ gradle installDebug
 - `gradle test`: Set timeout to 1800 seconds (30 minutes)
 - `gradle installDebug`: Set timeout to 900 seconds (15 minutes)
 
+**CRITICAL BUILD ENVIRONMENT NOTES:**
+- **Missing Gradle Wrapper**: Repository lacks `gradlew` script - use system `gradle` command
+- **Network Dependency**: Build WILL FAIL without internet access to download dependencies
+- **Expected Failures**: DNS resolution issues may prevent builds (`dl.google.com: Could not resolve host`)
+
 ### Development Environment Setup
 - **Target Platform**: Android 10 (API 29), minimum Android 8.0 (API 26)
 - **Language**: Kotlin with Java 8 compatibility
@@ -350,9 +355,8 @@ gradle installDebug
 
 ### API Key Configuration
 Before building, API keys must be configured in the source code:
-- **ZhipuAIProvider.kt**: Add `ZHIPU_API_KEY` constant
-- **BaiduErnieProvider.kt**: Add `BAIDU_API_KEY` constant  
-- **YandexGPTProvider.kt**: Add `YANDEX_API_KEY` constant
+- **ChineseProviders.kt**: Replace `"Bearer YOUR_API_KEY"` with actual Zhipu AI key
+- **InternationalProviders.kt**: Add API keys for Yandex GPT and other providers
 - Register for free API keys at respective provider websites
 
 ## Validation Scenarios
@@ -362,7 +366,7 @@ Before building, API keys must be configured in the source code:
 ### Complete User Flow Testing
 1. **App Launch Validation**:
    ```bash
-   # Install and launch app
+   # Install and launch app (requires connected device/emulator)
    gradle installDebug
    # Manually verify app launches without crashes
    ```
@@ -398,7 +402,7 @@ Before building, API keys must be configured in the source code:
 ### Key Directories
 ```
 app/src/main/java/com/zhipu/bigmodel/international/
-├── MainActivity.kt                    # Main UI controller
+├── MainActivity.kt                    # Main UI controller with language/provider selection
 ├── core/                             # Core system components
 │   ├── Language.kt                   # Language definitions and enums
 │   ├── PromptLocalizer.kt           # Cultural prompt optimization  
@@ -420,11 +424,14 @@ app/src/main/java/com/zhipu/bigmodel/international/
 - **`proguard-rules.pro`**: Code obfuscation rules for release builds
 
 ### Internationalization Resources
-- **`app/src/main/res/values/strings.xml`**: Default English strings
+- **`app/src/main/res/values/strings.xml`**: Default English strings (30+ UI strings)
 - **`app/src/main/res/values-zh/strings.xml`**: Chinese localization
 - **`app/src/main/res/values-ru/strings.xml`**: Russian localization
 - **`app/src/main/res/values-ja/strings.xml`**: Japanese localization  
 - **`app/src/main/res/values-ko/strings.xml`**: Korean localization
+
+### UI Layout
+- **`app/src/main/res/layout/activity_main.xml`**: ScrollView with language spinner, provider selection, translation toggle, and response display
 
 ## Common Tasks and Commands
 
@@ -444,7 +451,7 @@ app/src/main/java/com/zhipu/bigmodel/international/
 
 ### Testing Changes
 ```bash
-# Run unit tests for core functionality
+# Run unit tests for core functionality (114 lines of tests)
 gradle test
 
 # Run specific test class
@@ -485,10 +492,11 @@ gradle test --tests "com.zhipu.bigmodel.international.InternationalAITest"
 - **Missing repositories in buildscript**: Fixed in current codebase
 - **Gradle version mismatch**: Use Gradle 7.4.2 as specified in wrapper
 - **ProGuard issues**: Check `proguard-rules.pro` for required keep rules
+- **DNS Resolution Failures**: Build environment may block access to `dl.google.com`
 
 ### Runtime Issues
 - **Service not connecting**: Check `InternationalAIService` is properly bound in `MainActivity`
-- **API failures**: Verify API keys are configured correctly
+- **API failures**: Verify API keys are configured correctly in provider source files
 - **Translation errors**: Check network connectivity and provider availability
 - **UI language not updating**: Restart app after language change
 
@@ -510,6 +518,7 @@ gradle test --tests "com.zhipu.bigmodel.international.InternationalAITest"
 
 ### Build Environment Constraints
 - **CRITICAL**: Requires internet connectivity for all builds
+- **Missing Gradle Wrapper**: No `gradlew` script present, must use system gradle
 - Cannot build in offline mode due to missing dependency cache
 - Android SDK/NDK must be available in build environment
 - Network timeouts may occur in restricted environments

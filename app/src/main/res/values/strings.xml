@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Info -->
+    <string name="app_name">International AI Assistant</string>
+    
+    <!-- UI Labels -->
+    <string name="select_language">Select Language:</string>
+    <string name="ai_provider">AI Provider:</string>
+    <string name="auto_translation">Auto Translation:</string>
+    <string name="enter_your_prompt">Enter Your Prompt:</string>
+    <string name="ai_response">AI Response:</string>
+    
+    <!-- Placeholders -->
+    <string name="prompt_hint">Ask anything in any language...</string>
+    <string name="response_placeholder">Your AI response will appear here...</string>
+    <string name="provider_info_placeholder">Provider information will appear here</string>
+    
+    <!-- Buttons -->
+    <string name="generate_with_ai">Generate with AI</string>
+    
+    <!-- Status Messages -->
+    <string name="connecting_service">Connecting to International AI service...</string>
+    <string name="powered_by_international_ai">Powered by International AI Providers</string>
+    <string name="service_not_connected">Service not connected</string>
+    <string name="generating_response">Generating response...</string>
+    <string name="response_from">Response from:</string>
+    <string name="generation_failed">Generation failed</string>
+    <string name="translation_enabled">Translation enabled</string>
+    <string name="translation_disabled">Translation disabled</string>
+    
+    <!-- Validation Messages -->
+    <string name="enter_prompt">Please enter a prompt</string>
+    <string name="error_occurred">Error: %1$s</string>
+    
+    <!-- Provider Descriptions -->
+    <string name="zhipu_description">Chinese AI with strong reasoning capabilities</string>
+    <string name="baidu_description">ERNIE Bot with Chinese cultural context</string>
+    <string name="alibaba_description">Qianwen with multimodal support</string>
+    <string name="yandex_description">Russian language optimized GPT</string>
+    <string name="naver_description">Korean HyperCLOVA X</string>
+    <string name="rinna_description">Japanese conversational AI</string>
+    <string name="ai21_description">Hebrew and multilingual Jurassic</string>
+    <string name="cohere_description">Research-focused multilingual AI</string>
+</resources>

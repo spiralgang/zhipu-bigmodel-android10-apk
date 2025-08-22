@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace 'com.zhipu.bigmodel'
-    compileSdk 29
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.zhipu.bigmodel"

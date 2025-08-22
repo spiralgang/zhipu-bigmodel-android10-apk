@@ -1,4 +1,104 @@
-# Free BigModel (Zhipu AI) Android 10 APK – One-Click Download Solution
+# International AI Orchestration System
+
+## Overview
+
+This project expands the original Zhipu AI Android application into a comprehensive international AI orchestration system with automatic UI translation capabilities. The system provides seamless access to 20+ international AI providers with real-time translation and cultural context optimization.
+
+## Key Features
+
+### 🌍 International AI Provider Support
+
+#### Chinese AI Ecosystem
+- **Zhipu AI (ChatGLM)** - Enhanced with full GLM model suite
+- **Baidu ERNIE Bot** - Chinese cultural context optimization
+- **Alibaba Tongyi Qianwen** - E-commerce and multimodal support
+- **Tencent Hunyuan** - Gaming and social media optimization
+- **iFLYTEK Spark** - Voice-to-text integration
+- **SenseTime** - Computer vision capabilities
+- **Moonshot AI (Kimi)** - Long context processing
+- **01.AI Yi Series** - Open source models
+- **DeepSeek** - Code generation specialization
+- **Minimax** - Multimodal AI support
+
+#### International Providers
+- **Yandex GPT (Russia)** - Russian language optimization
+- **Naver HyperCLOVA X (South Korea)** - Korean cultural context
+- **LG AI Research EXAONE (South Korea)** - Enterprise AI
+- **Rinna (Japan)** - Japanese conversational AI
+- **AI21 Labs Jurassic (Israel)** - Hebrew and multilingual
+- **Cohere For AI (Canada)** - Research-focused capabilities
+- **EleutherAI** - Open source model hosting
+- **Stability AI (UK)** - Image and text generation
+
+### 🔄 Real-Time Translation System
+
+#### Multi-Provider Translation Pipeline
+1. **Primary**: Google Translate API (comprehensive language support)
+2. **Secondary**: Microsoft Translator (enterprise reliability)
+3. **Specialized**: Baidu Translate (Chinese optimization)
+4. **Privacy**: LibreTranslate (local/private translations)
+
+#### Translation Features
+- Automatic language detection
+- Real-time UI translation for 50+ languages
+- Provider response translation
+- Translation caching for performance
+- Cultural context preservation
+
+### 🎯 Cultural Context Optimization
+
+#### Provider-Specific Prompt Engineering
+- **Chinese Providers**: Formal language markers, business context, compliance guidance
+- **Russian Provider**: Formal/informal tone adaptation
+- **Korean Provider**: Politeness levels and honorifics
+- **Japanese Provider**: Keigo (respectful language) integration
+- **Hebrew Provider**: RTL text optimization
+
+#### Regional Provider Prioritization
+- Auto-detection of user location and language
+- Prioritization of regional providers for cultural understanding
+- Fallback to global providers with context injection
+- Geo-aware load balancing
+
+### 📱 Enhanced UI Internationalization
+
+#### Comprehensive Language Support
+- **Languages**: 50+ languages with full RTL/LTR support
+- **Scripts**: Chinese, Arabic, Hebrew, Cyrillic, etc.
+- **Formatting**: Cultural date/time and number representations
+- **Fonts**: Dynamic loading for complex scripts
+
+#### Adaptive UI Components
+- Language-aware layout adjustments
+- Cultural color and symbol preferences
+- Regional emoji support
+- Accessibility compliance
+
+### 🔒 Compliance and Security
+
+#### Regional Compliance Framework
+- **GDPR** compliance for EU providers
+- **Chinese data sovereignty** requirements
+- **Export control** compliance for US-based APIs
+- **Content filtering** based on regional standards
+
+#### Smart Access Routing
+- Optimal endpoint selection based on user location
+- Geo-restriction handling
+- VPN/proxy detection and optimization
+- Failover mechanisms
+
+## Architecture
+
+### Core Components
+
+```
+┌─────────────────────────────────────────────────┐
+
+■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□
+■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□
+■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□
+■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□# Free BigModel (Zhipu AI) Android 10 APK – One-Click Download Solution
 
 ## Purpose
 This project enables **single-click APK download** of a production-ready, lightweight Android 10 app integrating the Zhipu BigModel API (GLM-4) for free text generation. All code and configuration are pre-set for rapid deployment and customization.

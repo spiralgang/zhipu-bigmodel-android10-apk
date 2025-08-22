@@ -87,7 +87,7 @@ class BigModelService : Service() {
                 } else {
                     callback("Error: ${response.code()}")
                 }
-            } catch (e: Exception) {
+            } catch (e: IOException) {
                 callback("Error: ${e.message}")
             }
         }

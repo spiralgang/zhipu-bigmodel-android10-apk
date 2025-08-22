@@ -23,7 +23,7 @@ class BigModelService : Service() {
     
     companion object {
         private const val API_BASE_URL = "https://open.bigmodel.cn/"
-        private const val API_KEY = "YOUR_FREE_API_KEY"  // 替换为您的免费API密钥
+        // API_KEY is now provided via BuildConfig.API_KEY for security
     }
     
     inner class LocalBinder : Binder() {

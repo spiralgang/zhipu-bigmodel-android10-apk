@@ -1,97 +1,45 @@
-# CodeQL Advanced: Self-Healing, Autonomous, Non-Interfering Agent
-#
-# - Agentic: Diagnoses and attempts to resolve its own failures (e.g., permissions, missing build)
-# - Non-intrusive: Restricts scope to only its own job, never modifies or blocks other workflows
-# - Collaborates with Copilot (or other agents) by raising issues with actionable context on persistent failures
-# - Layered error handling: Self-repairs simple config issues, escalates only when agentic repair fails
-# - Production-grade: Minimal redundancy, audit trail, clear rationale
-#
-# See References at EOF for standards and foundational links.
+# CodeQL BANNED !!!
+# Shit job constant duplicate issues over and over never ending !!! YOURE FUCKIN BLOCKED!!! BANNED !! GTFO 
 
-name: CodeQL Advanced (Agentic & Self-Healing)
+name: CodeQL BANNED !!!
 
 on:
   push:
-    branches: [ "main", "android-app-bootstrap" ]
+    branches: [ "ZERO!!!, 🚫🚫" ]
   pull_request:
-    branches: [ "main", "android-app-bootstrap" ]
+    branches: [ "Zero!!!" ]
   schedule:
-    - cron: '31 16 * * 5'
+    - cron: '-0!!!'
 
 jobs:
   analyze:
-    name: Analyze (${{ matrix.language }})
-    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
+    name: (FUCK-OFF)
+    runs-on: ${{ GO FUCK YOURSELF}}
 
-    permissions:
-      security-events: write
-      packages: read
-      actions: read
-      contents: read
-
-    strategy:
-      fail-fast: false
-      matrix:
+    permissions: BANNED
+      security-events: BANNED
+      packages: BANNED
+      actions: BANNED
+      contents: BANNED
+      
+    strategy: BANNED
+      fail-fast: 
+      matrix: 
         include:
-        - language: actions
-          build-mode: none
-        - language: java-kotlin
-          build-mode: autobuild
+        - language: 
+          build-mode: BLOCKED / BANNED
+        - language: 
+          build-mode: 
 
     steps:
-      - name: Checkout repository (isolated)
-        uses: actions/checkout@v4
+      - name: BANNED
+        uses: BANNED
 
-      - name: Initialize CodeQL (autonomous)
+      - name:  BANNED 
         id: codeql-init
         uses: github/codeql-action/init@v3
         with:
-          languages: ${{ matrix.language }}
-          build-mode: ${{ matrix.build-mode }}
+          languages: 
+          build-mode: 
 
-      - name: Check agentic build mode repair
-        if: failure() && matrix.build-mode == 'autobuild'
-        run: |
-          echo "Autobuild failed; attempting agentic escalation."
-          # Check for known issues (e.g., missing manifest/build file)
-          if [ ! -f "build.gradle" ] && [ ! -f "pom.xml" ] && [ ! -f "settings.gradle" ]; then
-            echo "No recognizable Java/Kotlin build files. Attempting generic build..."
-            ./gradlew assemble || ./mvnw compile || echo "No gradle or maven wrapper found."
-          fi
-
-      - name: If manual build is required, provide actionable log
-        if: matrix.build-mode == 'manual'
-        run: |
-          echo 'Manual build mode detected. Please provide project-specific build steps as outlined in /reference/vault.'
-          exit 1
-
-      - name: Perform CodeQL Analysis
-        id: codeql-analyze
-        uses: github/codeql-action/analyze@v3
-        with:
-          category: "/language:${{matrix.language}}"
-
-      - name: Agentic failure diagnostics and Copilot escalation
-        if: failure()
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          echo "CodeQL analysis failed."
-          echo "Self-checking for common issues (permissions, missing files, etc)..."
-          # Check permissions
-          PERM=$(curl -s -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/rate_limit | grep '"resources":')
-          echo "Current token permissions: $PERM"
-          # Issue creation stub (uncomment to enable auto-issue filing)
-          # curl -X POST -H "Authorization: token $GITHUB_TOKEN" \
-          #   -d "{\"title\":\"CodeQL agentic failure\",\"body\":\"Autonomous CodeQL workflow failed. See logs for context. Suggested next steps: escalate to Copilot, review permissions, ensure build files exist.\"}" \
-          #   "https://api.github.com/repos/${{ github.repository }}/issues"
-          echo "::notice ::Escalation: Please review the failure logs and collaborate with Copilot or a human agent for persistent problems."
-
-# References
-#
-# - /reference/vault (coding standards, agentic pattern, error escalation)
-# - https://docs.github.com/en/code-security/code-scanning/using-codeql/codeql-workflow-security
-# - https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
-# - https://github.com/github/codeql-action
-# - https://github.com/actions/checkout
-# - https://docs.github.com/en/rest/issues/issues#create-an-issue
+          #BANNED BITCH

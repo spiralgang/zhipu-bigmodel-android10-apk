@@ -89,10 +89,9 @@ This project expands the original Zhipu AI Android application into a comprehens
 - Failover mechanisms
 
 ## Architecture
-
+```
 ### Core Components
 
-```
   > ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 > ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□
 > ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□
@@ -144,17 +143,17 @@ This project enables **single-click APK download** of a production-ready, lightw
    ```bash
    git clone https://github.com/zhipu-bigmodel/android10-apk.git
    cd android10-apk
-   ```
+   
 
 2. Get your free API key:  
    - Register at [https://open.bigmodel.cn/](https://open.bigmodel.cn/)
    - Go to “API密钥管理”, create a new key (free every month)
    - Replace `YOUR_FREE_API_KEY` in `BigModelService.kt`
-  ```
+  
 3. Build APK:
-   ```bash
+   bash
    ./gradlew assembleRelease
-   ```
+   
 
 4. Find APK at:  
    `app/build/outputs/apk/release/app-release.apk`
@@ -171,7 +170,7 @@ graph TD
     B --> C[Free Tier Integration]
     C --> D[Lightweight Mobile UI]
     D --> E[Cloud-Based Inference]
-```
+
 
 - The app binds a foreground service for all API calls, ensuring reliability and background execution.
 - Retrofit + coroutines power fast, robust network requests.
@@ -273,7 +272,6 @@ This repository has implemented comprehensive measures to prevent duplicate issu
 - **Zhipu BigModel API**: [https://open.bigmodel.cn/dev/api](https://open.bigmodel.cn/dev/api)
 - **All foundational standards**: `/reference/vault`
 
-```
 
   > ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 > ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□

@@ -150,7 +150,7 @@ This project enables **single-click APK download** of a production-ready, lightw
    - Register at [https://open.bigmodel.cn/](https://open.bigmodel.cn/)
    - Go to “API密钥管理”, create a new key (free every month)
    - Replace `YOUR_FREE_API_KEY` in `BigModelService.kt`
-
+  ```
 3. Build APK:
    ```bash
    ./gradlew assembleRelease
@@ -273,6 +273,7 @@ This repository has implemented comprehensive measures to prevent duplicate issu
 - **Zhipu BigModel API**: [https://open.bigmodel.cn/dev/api](https://open.bigmodel.cn/dev/api)
 - **All foundational standards**: `/reference/vault`
 
+```
 
   > ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 > ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□
@@ -284,4 +285,4 @@ This repository has implemented comprehensive measures to prevent duplicate issu
 ---
   > ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
-
+```

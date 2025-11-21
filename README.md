@@ -108,7 +108,8 @@ This project expands the original Zhipu AI Android application into a comprehens
 # Free BigModel (Zhipu AI) Android 10 APK – One-Click Download Solution
 
 ## Purpose
-This project enables **single-click APK download** of a production-ready, lightweight Android 10 app integrating the Zhipu BigModel API (GLM-4) for free text generation. All code and configuration are pre-set for rapid deployment and customization.
+This project enables **single-click APK download** of a production-ready, lightweight Android 10 app integrating the Zhipu BigModel API (GLM-4) for free text generation.
+ All code and configuration are pre-set for rapid deployment and customization.
 
 ---
 
@@ -215,7 +216,8 @@ graph TD
 
 ## /reference/vault
 
-- All standards, libraries, and security practices referenced in this app are summarized in the `/reference/vault`. For full traceability and auditing, consult the vault for:
+- All standards, libraries, and security practices referenced in this app are summarized in the `/reference/vault`.
+-  For full traceability and auditing, consult the vault for:
     - API security/auth
     - Android permissions and manifest conventions
     - UI/UX standards
@@ -252,7 +254,7 @@ This repository has implemented comprehensive measures to prevent duplicate issu
 - **Branch Management**: Automated cleanup and lifecycle guidelines  
 - **Complete Documentation**: All work successfully consolidated from multiple parallel efforts
 
-📋 **Deduplication Summary**: See [Issue Deduplication Summary](.github/ISSUE_DEDUPLICATION_SUMMARY.md) for details on resolved duplicates and prevention measures.
+📋 **Deduplication Summary**: See [Issue Deduplication Summary](.github/ISSUE_DEDUPLICATION_SUMMARY.md) for details on dedupe prevention measures.
 
 ### 🔧 Contributing Guidelines
 
@@ -270,3 +272,16 @@ This repository has implemented comprehensive measures to prevent duplicate issu
 - **Developer Instructions**: [.github/copilot-instructions.md](.github/copilot-instructions.md)
 - **Zhipu BigModel API**: [https://open.bigmodel.cn/dev/api](https://open.bigmodel.cn/dev/api)
 - **All foundational standards**: `/reference/vault`
+
+
+  > ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+> ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□
+> ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□
+> ^                                                                                                                                                                                                                                ^  <
+---
+> ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□
+> ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□
+---
+  > ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+

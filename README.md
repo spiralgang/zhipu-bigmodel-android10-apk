@@ -94,11 +94,11 @@ This project expands the original Zhipu AI Android application into a comprehens
 
 ```
 ┌─────────────────────────────────────────────────┐
+> ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□
+> ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□  ■□■□■□
+> ^                                                                                                           ^  <
 
-■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□
-■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□
-■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□
-■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□■□# Free BigModel (Zhipu AI) Android 10 APK – One-Click Download Solution
+# Free BigModel (Zhipu AI) Android 10 APK – One-Click Download Solution
 
 ## Purpose
 This project enables **single-click APK download** of a production-ready, lightweight Android 10 app integrating the Zhipu BigModel API (GLM-4) for free text generation. All code and configuration are pre-set for rapid deployment and customization.
